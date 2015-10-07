@@ -1,0 +1,8 @@
+.button {
+  border: 1px solid #282727;
+  background-color: #DBC73C;
+  display: inline-block;
+  font-weight: bold;
+  font-family: "Verdana";
+  text-transform: uppercase;
+}
