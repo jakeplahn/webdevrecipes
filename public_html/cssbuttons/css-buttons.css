@@ -8,4 +8,7 @@
   font-size: 1.2em;
   line-height: 1.22em;
   padding: 6px 20px;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
 }
