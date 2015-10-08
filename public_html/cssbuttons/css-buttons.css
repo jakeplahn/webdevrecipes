@@ -11,6 +11,9 @@
   cursor: pointer;
   color: #000;
   text-decoration: none;
+  border-radius: 12px;
+  -webkit-box-shadow: 1px 3px 5px #999;
+          box-shadow: 1px 3px 5px #999;
 }
 input::-moz-focus-inner {
   border: 0;
