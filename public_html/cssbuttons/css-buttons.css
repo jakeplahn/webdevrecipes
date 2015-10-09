@@ -17,6 +17,11 @@
   background: -webkit-linear-gradient(top, #FFF089, #DBC73C);
   background:         linear-gradient(to bottom, #FFF089, #DBC73C);
 }
+.button:active, .button:focus {
+  color: #000;
+  background: -webkit-linear-gradient(top, #DBC73C, #FFF089);
+  background:         linear-gradient(to bottom, #DBC73C, #FFF089);
+}
 input::-moz-focus-inner {
   border: 0;
   padding: 0;
