@@ -24,3 +24,6 @@ body {
   transform:         rotate(20deg);
   transition: left 2s ease-in-out;
 }
+header:hover .sheen {
+  left: 900px;
+}
