@@ -27,3 +27,4 @@ body {
 header:hover .sheen {
   left: 900px;
 }
+#banner.loaded .sheen { left: 900px; }
