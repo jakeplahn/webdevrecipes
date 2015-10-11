@@ -22,4 +22,5 @@ body {
   box-shadow: 0 0 20px #FFF;
   -webkit-transform: rotate(20deg);
   transform:         rotate(20deg);
+  transition: left 2s ease-in-out;
 }
