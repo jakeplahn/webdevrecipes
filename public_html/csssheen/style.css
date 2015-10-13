@@ -18,6 +18,25 @@ body {
 #banner .sheen {
   height: 200px;
   width: 15px;
-  background: rgba(255,255,255,.5);
-  float: left;
+  background: rgba(255,255,255,0.5);
+  float:left;
+}
+#banner .sheen {
+  position: absolute;
+  left: -100px;
+  top: -25px;
+  box-shadow: 0 0 20px #FFF;
+  -webkit-transform: rotate(20deg);
+  transform:         rotate(20deg);
+}
+#banner .sheen {
+  position: absolute;
+  transition: left 2s ease-in-out;
+}
+header:hover .sheen {
+  left: 900px;
+}
+#banner.loaded .sheen { left: 900px; }
+#banner {
+  overflow: hidden;
 }
