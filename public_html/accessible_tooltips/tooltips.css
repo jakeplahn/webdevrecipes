@@ -1,0 +1,7 @@
+.definition .tooltip[aria-hidden='true'] {
+  display:none;
+}
+
+.definition .tooltip[aria-hidden='false'] {
+  display:block;
+}
