@@ -5,14 +5,6 @@
     $slideShow = $('#slideshow');
     $pauseButton = $('<button>Pause</button>');
 
-    $pauseButton.on('click', function() {
-      if (isPaused($slideShow)) {
-        playSlideShow($slideShow, $(this));
-      } else {
-        pauseSlideShow($slideShow, $(this));
-      }
-    });
-
     function isPaused($player) {
       return $player.is('.cycle-paused');
     }
@@ -26,6 +18,14 @@
       $player.cycle('pause');
       $button.html('Resume');
     }
+
+    $pauseButton.on('click', function() {
+      if (isPaused($slideShow)) {
+        playSlideShow($slideShow, $(this));
+      } else {
+        pauseSlideShow($slideShow, $(this));
+      }
+    });
 
     $pauseButton.insertAfter($slideShow);
   }
