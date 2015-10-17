@@ -1,0 +1,8 @@
+#navigation {
+  background-color: black;
+  color: white;
+  float: left;
+  font-size: 1.3em;
+  min-height: 600px;
+  width: 150px;
+}
