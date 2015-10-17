@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="tooltips.css">
+  </head>
+  <body>
+    <p>It's a perfectly
+      <span class="definition" aria-describeby="def-test" tabindex="0">
+        cromulent
+        <span class="tooltip" id="def-test" role="tooltip">
+          <b>adjective</b>
+          Appearing legitimate but actually being spurious.
+        </span>
+      </span>
+      word.
+    </p>
+    <p>Another paragraph of text.</p>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+    <script src="tooltips.js"></script>
+  </body>
+</html>
