@@ -33,4 +33,5 @@
       switchTab($div, $firstTab, $div.find(childSelector).first(), childSelector);
     });
   }
+  initTabs($('div.languages'), 'div.language');
 })(jQuery);
