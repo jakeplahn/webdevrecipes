@@ -23,4 +23,14 @@
     });
     $container.prepend($list);
   }
+  
+  function initTabs($containers, childSelector) {
+    $containers.each(function() {
+      var $div, $firstTab;
+      $div = $(this);
+      createTabs($div, childSelector);
+      $firstTab = $div.find('ul.tabs > li').first();
+      switchTab($div, $firstTab, $div.find(childSelector).first(), childSelector);
+    });
+  }
 })(jQuery);
