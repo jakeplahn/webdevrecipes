@@ -1,6 +1,6 @@
 (function($) {
   function handleExpandAll(event) {
-    this.find('li.collapsed').toggleExapandCollapse(event);
+    this.find('li.collapsed').toggleExpandCollapse(event);
   }
 
   function handleCollapseAll(event) {
