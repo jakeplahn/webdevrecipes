@@ -26,7 +26,7 @@
     return this;
   };
   $.fn.prependToggleAllLinks = function () {
-    var $container = $('<div').attr('class', 'expand_or_collapse_all');
+    var $container = $('<div>').attr('class', 'expand_or_collapse_all');
     $container.append(
       $('<a>')
         .attr('href', '#')
