@@ -14,6 +14,17 @@
   function getCurrentPageNumber() {
     return parseInt(getQueryString('page') || 1);
   }
+
+  function loadPreviousPage() {
+    pageNumber = getCurrentPageNumber() - 1;
+    if (pageNumber > 0) {
+      window.location.href = replacePageNumber(pageNumber);
+    }
+  }
+
+  function replacePageNumber(pageNumber) {
+    return window.location.href.replace(/page=(\d+)/,'page=' + pageNumber);
+  }
   
   function loadNextPage() {
     var pageNumber = getCurrentPageNumber() + 1;
@@ -23,7 +34,7 @@
     }
     else {
       var joinChar = (url.indexOf('?') > -1) ? '&' : '?';
-      window.location.href += joinChar + pageNumber;
+      window.location.href += joinChar + 'page=' + pageNumber;
     }
   }
 
