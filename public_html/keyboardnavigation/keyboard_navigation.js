@@ -1,6 +1,5 @@
 (function($) {
   var currentEntry = -1;
-  
   function getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
@@ -11,6 +10,7 @@
     }
     return val;
   }
+
   function getCurrentPageNumber() {
     return parseInt(getQueryString('page') || 1);
   }
