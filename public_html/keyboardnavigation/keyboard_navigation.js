@@ -1,3 +1,4 @@
+/*global window,document,jQuery,unescape  */
 (function($) {
   var currentEntry = -1;
   function getQueryString(name) {
@@ -12,18 +13,18 @@
   }
 
   function getCurrentPageNumber() {
-    return parseInt(getQueryString('page') || 1);
-  }
-
-  function loadPreviousPage() {
-    pageNumber = getCurrentPageNumber() - 1;
-    if (pageNumber > 0) {
-      window.location.href = replacePageNumber(pageNumber);
-    }
+    return parseInt(getQueryString('page') || 1,10);
   }
 
   function replacePageNumber(pageNumber) {
     return window.location.href.replace(/page=(\d+)/,'page=' + pageNumber);
+  }
+
+  function loadPreviousPage() {
+    var pageNumber = getCurrentPageNumber() - 1;
+    if (pageNumber > 0) {
+      window.location.href = replacePageNumber(pageNumber);
+    }
   }
   
   function loadNextPage() {
@@ -81,4 +82,4 @@
       }
     }
   });
-})(jQuery);
+}(jQuery));
