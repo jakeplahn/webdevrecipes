@@ -40,7 +40,7 @@
 
   function scrollToEntry(entryIndex) {
     var top = $("#" + $('.entry')[entryIndex].id).offset().top;
-    $('html.body').animate({ scrollTop: top }, 'slow');
+    $('html,body').animate({ scrollTop: top }, 'slow');
   }
   function scrollNext() {
     if($('.entry').size() > currentEntry + 1) {
