@@ -7,7 +7,12 @@
   <body>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
-      $.getJSON('http://webdevrecipes.localhost-lorem.com/products.json', function(products) {
+      function foobar() {
+        console.log('foobar()');
+      }
+      //$.getJSON('http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?',function () {console.log('json call made');});
+      //$.getJSON('http://localhost:8080/products.json?callback=?');
+      /*$.getJSON('http://localhost:8080/products.json?callback=jsonpcallback', function(products) {
         for(var index=0, length = products.length; index < length; index++) {
           var newProduct = $('<div class="product"></div>');
           newProduct.append('<span class="product-name">' + 
@@ -18,7 +23,8 @@
                               products[index].description + '</div>');
           $('body').append(newProduct);
         }
-      });
+      });*/
     </script>
+    <script src="http://webdevrecipes.localhost.com:8080/products.json?callback=foobar"></script>
   </body>
 </html>
