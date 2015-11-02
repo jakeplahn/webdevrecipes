@@ -5,7 +5,30 @@
     <title></title>
   </head>
   <body>
+    <script type="text/x-handlebars-template" id="products_template">
+    {{#products}}
+      <div class="product">
+        <h2>
+          <span class="product-name">{{name}}</span>
+          <em class="product-price">{{price}}</em>
+        </h2>
+        {{#if description}}
+          <div class="product-description">{{description}}</div>
+        {{/if}}
+      </div>
+    {{/products}}
+    </script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.min.js"></script>
+  <script>
+    (function() {
+      $.getJSON('/products.json', function (products) {
+        var data = {products: products};
+        var template = Handlebars.compile($("#products_template").html());
+        var html = template(data);
+        $("body").append(html);
+      });
+    })();
+  </script>
   </body>
 </html>
