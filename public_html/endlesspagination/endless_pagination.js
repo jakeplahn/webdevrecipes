@@ -1,4 +1,4 @@
-/*globals jQuery,Handlebars,document*/
+/*globals jQuery,Handlebars,document,window*/
 (function($) {
   "use strict";
   var currentPage = 0;
@@ -32,5 +32,13 @@
       $.getJSON(nextPageWithJSON(), {}, updateContent)
         .complete(function() { loadingPage--; });
       }
+  }
+  function readyForNextPage() {
+    if (!$('#next_page_spinner').is(':visible')) {return;}
+
+    var threshold = 200;
+    var bottomPosition = $(window).scrollTop() + $(window).height();
+    var distanceFromBottom = $(document).height() - bottomPosition;
+    return distanceFromBottom <= threshold;
   }
 }(jQuery));
