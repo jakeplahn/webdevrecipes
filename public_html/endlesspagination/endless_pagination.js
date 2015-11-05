@@ -22,6 +22,7 @@
         <br> \
         <span class='description'>{{description}}</span> \
         </div>{{/products}}")({ products: data }));
+    if (data.length === 0) { $('#next_page_spinner').hide(); }
   }
   function updateContent(response) {
     loadData(response);
@@ -45,4 +46,5 @@
     if (readyForNextPage()) {getNextPage();}
   }
   $(document).scroll(observeScroll);
+  getNextPage();
 }(jQuery));
