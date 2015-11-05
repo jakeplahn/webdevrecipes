@@ -41,4 +41,8 @@
     var distanceFromBottom = $(document).height() - bottomPosition;
     return distanceFromBottom <= threshold;
   }
+  function observeScroll(event) {
+    if (readyForNextPage()) {getNextPage();}
+  }
+  $(document).scroll(observeScroll);
 }(jQuery));
