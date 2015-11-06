@@ -1,8 +1,16 @@
-/*globals jQuery,Handlebars,document,window*/
+/*global window,Handlebars,document*/
 (function($) {
-  "use strict";
+  function getParameterByName(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)')
+      .exec(window.location.search);
+
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+  }
+
   var currentPage = 0;
   var loadingPage = 0;
+  var startPage = 0;
+
   function nextPageWithJSON() {
     currentPage += 1;
     var newURL = '/products.json?page=' + currentPage;
@@ -15,36 +23,73 @@
     }
     return newURL;
   }
+
+  function getNextPage(ignoreMutexBlocking) {
+    if (!ignoreMutexBlocking && loadingPage != 0) return;
+
+    loadingPage++;
+    $.getJSON(nextPageWithJSON(), {}, updateContent).
+      complete(function() { loadingPage-- });
+  }
+  function readParameters() {
+    startPage = parseInt(getParameterByName('start_page'),10);
+    if (isNaN(startPage)) {
+      startPage = parseInt(getParameterByName('page'),10);
+    }
+    if (isNaN(startPage)) {
+      startPage = 1;
+    }
+    currentPage = startPage - 1;
+
+    if (getParameterByName('page')) {
+      var endPage = parseInt(getParameterByName('page'),10);
+      var i;
+      for (i = currentPage; i < endPage; i++) {
+        getNextPage(true);
+      }
+    }
+
+    observeScroll();
+  }
+
   function loadData(data) {
     $('#content').append(Handlebars.compile("{{#products}} \
       <div class='product'> \
-        <a href='/productds/{{id}}'>{{name}}</a> \
+        <a href='/products/{{id}}'>{{name}}</a> \
         <br> \
         <span class='description'>{{description}}</span> \
         </div>{{/products}}")({ products: data }));
-    if (data.length === 0) { $('#next_page_spinner').hide(); }
+    if (data.length == 0) $('#next_page_spinner').hide();
   }
+
+  function updateBrowserUrl() {
+    if (window.history.pushState == undefined) return;
+
+    var newURL = '?start_page=' + startPage + '&page=' + currentPage;
+    window.history.pushState({}, '', newURL);
+  }
+
+
   function updateContent(response) {
     loadData(response);
+    updateBrowserUrl();
   }
-  function getNextPage() {
-    if (loadingPage === 0) {
-      loadingPage++;
-      $.getJSON(nextPageWithJSON(), {}, updateContent)
-        .complete(function() { loadingPage--; });
-      }
-  }
+
   function readyForNextPage() {
-    if (!$('#next_page_spinner').is(':visible')) {return;}
+    if (!$('#next_page_spinner').is(':visible')) return;
 
     var threshold = 200;
     var bottomPosition = $(window).scrollTop() + $(window).height();
     var distanceFromBottom = $(document).height() - bottomPosition;
+
     return distanceFromBottom <= threshold;
   }
+
   function observeScroll(event) {
-    if (readyForNextPage()) {getNextPage();}
+    if (readyForNextPage()) getNextPage();
   }
+
   $(document).scroll(observeScroll);
-  getNextPage();
-}(jQuery));
+  readParameters();
+})(jQuery);
+
