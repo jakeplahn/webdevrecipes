@@ -19,6 +19,9 @@
           <tr aria-live="polite">
             <td data-bind="text: name"></td>
             <td data-bind="text: price"></td>
+            <td><input type="text" name="quantity"
+              data-bind='value: quantity, valueUpdate: "keyup"'>
+            </td>
           </tr>
         </tbody>
       </table>
