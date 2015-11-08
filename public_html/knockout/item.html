@@ -37,6 +37,11 @@
         
         var item = new LineItem("Macbook Pro 15", 1699.00);
         this.quantity = ko.observable(1);
+        this.subtotal = ko.computed(function () {
+          return(
+            this.price * parseInt("0"+this.quantity(),10)
+            ); //<label id="code.subtotal" />
+        }, this);
         ko.applyBindings(item);
     })();
     </script>
