@@ -56,8 +56,8 @@
           }, this);
         };
         
-        var item = new LineItem("Macbook Pro 15", 1699.00);
-        ko.applyBindings(item);
+        var cartViewModel = new Cart(products);
+        ko.applyBindings(cartViewModel);
     })();
     </script>
   </body>
