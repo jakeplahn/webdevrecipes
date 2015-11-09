@@ -25,6 +25,12 @@
             <td data-bind="text: subtotal "></td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">Total</td>
+            <td aria-live="polite" data-bind="text: total()"></td>
+          </tr>
+        </tfoot>
       </table>
     </div>
     <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script>
@@ -39,6 +45,13 @@
         
         var Cart = function(items){
           this.items = ko.observableArray();
+          this.total = ko.computed(function() {
+            var total = 0;
+            for (item in this.items()){
+              total += this.items()[item].subtotal();
+            }
+            return total;
+          },this);
           
           for(var i in items){
             var item = new LineItem(items[i].name, items[i].price);
