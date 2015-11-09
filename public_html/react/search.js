@@ -8,3 +8,5 @@ var ProductSearch = React.createClass({
     );
   }
 });
+
+React.render(<ProductSearch />, document.getElementById('content'));
