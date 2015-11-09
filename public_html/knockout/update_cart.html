@@ -15,12 +15,12 @@
             <th>Total</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody data-bind="foreach: items">
           <tr aria-live="polite">
             <td data-bind="text: name"></td>
             <td data-bind="text: price"></td>
             <td><input type="text" name="quantity"
-              data-bind='value: quantity, valueUpdate: "keyup"'>
+              data-bind='value: quantity'>
             </td>
             <td data-bind="text: subtotal "></td>
           </tr>
