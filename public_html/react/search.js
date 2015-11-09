@@ -19,7 +19,35 @@ var ProductSearch = React.createClass({
     return (
       <div>
         <h1>Product Search</h1>
+        { /* START_HIGHLIGHT */ }
+        <ProductList data={this.state.data} />
       </div>
+    );
+  }
+});
+
+var ProductList = React.createClass({
+  render: function() {
+    var products = this.props.data.map(function (product) {
+      return (
+        <tr>
+          <td>{product.name}</td>
+          <td>{product.description}</td>
+          <td>{product.price}</td>
+        </tr>
+      );
+    });
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th><th>Description</th><th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products}
+        </tbody>
+      </table>
     );
   }
 });
