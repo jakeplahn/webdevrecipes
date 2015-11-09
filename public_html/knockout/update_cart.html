@@ -23,6 +23,11 @@
               data-bind='value: quantity'>
             </td>
             <td data-bind="text: subtotal "></td>
+            <td>
+              <button
+                data-bind="click: $parent.remove">Remove
+              </button>
+            </td>
           </tr>
         </tbody>
         <tfoot>
@@ -45,6 +50,9 @@
         
         var Cart = function(items){
           this.items = ko.observableArray();
+          this.remove = function(item) {
+            this.items.remove(item);
+          }.bind(this);
           this.total = ko.computed(function() {
             var total = 0;
             for (item in this.items()){
