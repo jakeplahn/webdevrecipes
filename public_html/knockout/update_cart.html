@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Update Quantities</title>
+  </head>
+  <body>
+    <div role="application">
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody data-bind="foreach: items">
+          <tr aria-live="polite">
+            <td data-bind="text: name"></td>
+            <td data-bind="text: price"></td>
+            <td><input type="text" name="quantity"
+              data-bind='value: quantity'>
+            </td>
+            <td data-bind="text: subtotal "></td>
+            <td>
+              <button
+                data-bind="click: $parent.remove">Remove
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">Total</td>
+            <td aria-live="polite" data-bind="text: total()"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"></script>
+    <script type="text/javascript">
+      (function(){
+        var products = [
+          {name: "Macbook Pro 15 inch", price: 1669.00},
+          {name: "Mini Display Port to VGA Adapter", price: 29.00},
+          {name: "Magic Trackpad", price: 69.00},
+          {name: "Apple Wireless Keyboard", price: 69.00}
+        ];
+        
+        var Cart = function(items){
+          this.items = ko.observableArray();
+          this.remove = function(item) {
+            this.items.remove(item);
+          }.bind(this);
+          this.total = ko.computed(function() {
+            var total = 0;
+            for (item in this.items()){
+              total += this.items()[item].subtotal();
+            }
+            return total;
+          },this);
+          
+          for(var i in items){
+            var item = new LineItem(items[i].name, items[i].price);
+            this.items.push(item);
+          }
+        };
+        var LineItem = function(product_name, product_price){
+          this.name = product_name;
+          this.price = product_price;
+          this.quantity = ko.observable(1);
+          this.subtotal = ko.computed(function () {
+            return(
+              this.price * parseInt("0"+this.quantity(),10)
+              ); //<label id="code.subtotal" />
+          }, this);
+        };
+        
+        var cartViewModel = new Cart(products);
+        ko.applyBindings(cartViewModel);
+    })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <p>First name: <input type="text" data-bind="value: firstname"></p>
+  <p>Last name: <input type="text" data-bind="value: lastname"></p>
+  <p>Full name:
+    <span aria-live="polite" data-bind="text: fullname"></span>
+  </p>
+  <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.debug.js"></script>
+  <script type="text/javascript">
+    (function() {
+      var Person = function () {
+        this.firstname = ko.observable("John");
+        this.lastname = ko.observable("Smith");
+        this.fullname = ko.computed(function () {
+          return(
+            this.firstname() + " " + this.lastname()
+          );
+        }, this);
+      };
+
+      ko.applyBindings(new Person);
+    })();
+  </script>
+  </body>
+</html>
