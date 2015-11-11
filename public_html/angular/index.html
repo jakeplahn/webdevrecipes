@@ -7,7 +7,22 @@
   </head>
   <body ng-app="products">
     <div id="wrap">
-      <ng-view> </ng-view>  
+      <ng-view>
+        <div ng-controller="ProductsCtrl as productsCtrl"
+          ng-init="productsCtrl.get()">
+          <h2>Other Products</h2>
+          <div>
+            <ul>
+              <li ng-repeat="product in productsCtrl.products">
+                <a href="#/products/{{product.id}}">
+                  {{ product.name }} $ {{ product.price }}
+                </a>
+              </li>
+            </ul>
+          </div>
+          <a href="#/products/new">Add a new product</a>
+        </div>
+      </ng-view>  
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js"></script>
