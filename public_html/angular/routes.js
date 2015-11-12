@@ -5,7 +5,7 @@ ProductsApp.config(['$routeProvider', function($routeProvider) {
     when("/", { controller: "ProductsCtrl" }).
     when("/products/:id", {
       controller:  "ProductCtrl as productCtrl",
-      templateUrl: "/templates/show.html"
+      templateUrl: "/angular/templates/show.html"
     }).
     when("/products/new", {
       controller: "ProductNewCtrl as productFormCtrl",
