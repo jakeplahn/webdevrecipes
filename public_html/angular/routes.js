@@ -7,5 +7,13 @@ ProductsApp.config(['$routeProvider', function($routeProvider) {
       controller:  "ProductCtrl as productCtrl",
       templateUrl: "/templates/show.html"
     }).
+    when("/products/new", {
+      controller: "ProductNewCtrl as productFormCtrl",
+      templateUrl: "/templates/form.html"
+    }).
+    when("/products/:id/edit", {
+      controller: "ProductEditCtrl as productFormCtrl",
+      templateUrl: "/templates/form.html"
+    }).
     otherwise({ redirectTo: "/" });
 }]);
