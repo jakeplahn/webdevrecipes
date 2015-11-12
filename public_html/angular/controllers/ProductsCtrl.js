@@ -5,3 +5,8 @@ ProductsApp.controller("ProductsCtrl", function($resource, $rootScope) {
   };
   $rootScope.$on("products.updated", this.get.bind(this));
 });
+
+ProductsApp.controller("ProductCtrl", function($resource, $routeParams) {
+  var Product = $resource('/products/:id.json', { id: "@id" });
+  this.product = Product.get({ id: $routeParams.id });
+});
