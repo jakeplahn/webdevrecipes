@@ -9,11 +9,11 @@ ProductsApp.config(['$routeProvider', function($routeProvider) {
     }).
     when("/products/new", {
       controller: "ProductNewCtrl as productFormCtrl",
-      templateUrl: "/templates/form.html"
+      templateUrl: "/angular/templates/form.html"
     }).
     when("/products/:id/edit", {
       controller: "ProductEditCtrl as productFormCtrl",
-      templateUrl: "/templates/form.html"
+      templateUrl: "/angular/templates/form.html"
     }).
     otherwise({ redirectTo: "/" });
 }]);
