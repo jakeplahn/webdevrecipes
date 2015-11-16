@@ -1,0 +1,11 @@
+{
+  "customers": [
+    { "name": "Adrienne Sargent", "age": 20 },
+    { "name": "Stella Albin", "age": 55 },
+    { "name": "Dolores Krauss", "age": 28 },
+    { "name": "Jerry Ayala", "age": 34 },
+    { "name": "Keith Shuman", "age": 35 },
+    { "name": "Timothy Navarra", "age": 33 },
+    { "name": "Norman Tanaka", "age": 36 }
+  ]
+}
