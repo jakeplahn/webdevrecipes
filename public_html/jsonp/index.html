@@ -11,5 +11,26 @@
     <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
     </script>
+    <script>
+      function loadPhotos() {
+        var callback = "displayPhotos";
+        $.ajax({
+          url: 'https://api.flickr.com/services/feeds/photos_public.gne' + 
+               '?format=json' + 
+               '&jsoncallback=' + callback,
+          dataType: "jsonp"
+        })
+      }
+  
+      function displayPhotos(data) {
+        $.each(data.items, function(i,item) {
+          var $imageTag = $('<img>');
+          $imageTag.attr('src', item.media.m);
+          $('body').append($imageTag);
+        });
+      }
+  
+      loadPhotos();
+    </script>
   </body>
 </html>
