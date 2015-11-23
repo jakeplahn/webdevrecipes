@@ -3,6 +3,33 @@
   <head>
     <meta charset="utf-8">
     <title>Awesome Web Development - Contact Us</title>
+    <style type="text/css">
+      body {
+        font-size: 12px;
+        font-family: Verdana;
+      }
+
+      #contact-form {
+        width: 320px;
+      }
+
+      #contact-form label {
+        display: block;
+        margin: 10px 0px;
+      }
+
+      #contact-form input, #contact-form textarea {
+        padding: 4px;
+      }
+
+      #contact-form .full-width {
+        width: 100%;
+      }
+
+      #contact-form textarea {
+        height: 100px;
+      }
+    </style>
   </head>
   <body>
 
