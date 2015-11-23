@@ -23,6 +23,12 @@
       <label for="subject">Subject</label>
       <input class="full-width" type="text" name="subject"
             value="Web Consulting Inquiry">
+      
+      <label for="body">Body</label>
+      <textarea class="full-width" name="body"></textarea>
+
+      <input type="submit" name="send" value="Send">
+
     </form>
   </body>
 </html>
