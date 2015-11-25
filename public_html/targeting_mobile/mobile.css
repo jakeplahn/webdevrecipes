@@ -1,0 +1,10 @@
+body { font-weight: bold; }
+
+ul.collapsible {
+  width: 430px;
+  margin-left: -10px;
+}
+
+ul li { padding-top: 10px; }
+
+ul.collapsbile li:before { width: 200px; }
