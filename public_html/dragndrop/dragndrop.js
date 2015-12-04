@@ -1,5 +1,9 @@
 /*global $,document */
 
+function isTouchSupported() {
+  return 'ontouchmove' in document.documentElement;
+}
+
 function observeMove(event, cursorOffset, cursorPosition, draggableWindow) {
   event.preventDefault();
   var left = cursorPosition.pageX - cursorOffset.pageX;
@@ -8,8 +12,12 @@ function observeMove(event, cursorOffset, cursorPosition, draggableWindow) {
 }
 
 function unbindMovePopup(event, draggableWindow) {
-  $(document).unbind('mousemove');
-  draggableWindow.removeClass('dragging');
+  if (isTouchSupported()) {
+    $(document).unbind('touchmove');
+  } else {
+    $(document).unbind('mousemove');
+    draggableWindow.removeClass('dragging');
+  }
 }
 
 function dragPopup(event) {
@@ -22,13 +30,25 @@ function dragPopup(event) {
     pageX: cursor.pageX - parseInt(draggableWindow.css('left'),10),
     pageY: cursor.pageY - parseInt(draggableWindow.css('top'),10)
   };
+
+  if (isTouchSupported()) {
+    $(document).bind('touchmove', function(moveEvent) {
+      var currentPosition = moveEvent.originalEvent.touches[0];
+      observeMove(moveEvent, cursorOffset,
+        currentPosition, draggableWindow);
+    });
+    $(document).bind('touchend', function(upEvent) {
+      unbindMovePopup(upEvent, draggableWindow);
+    });
+  } else {
     $(document).mousemove(function(moveEvent) {
       observeMove(moveEvent, cursorOffset,
         moveEvent, draggableWindow);
     });
-  $(document).mouseup(function(up_event) {
-    unbindMovePopup(up_event, draggableWindow);
-  });
+    $(document).mouseup(function(up_event) {
+      unbindMovePopup(up_event, draggableWindow);
+    });
+  }
 }
 
 function updatePopupContent(data) {
@@ -47,6 +67,10 @@ function hidePopup() {
   return false;
 }
 
+
 $('.draggable .handle').on('mousedown', dragPopup);
+if (isTouchSupported()) {
+  $('.draggable .handle').on('touchStart', dragPopup);
+}
 $('.popup').on('click', updatePopup);
 $('.popup_window .close').on('click', hidePopup);
