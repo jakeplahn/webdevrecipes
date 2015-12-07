@@ -23,4 +23,19 @@
       $products_list.listview('refresh');
     });
   });
+
+  function showProduct(product) {
+    $('#product-header h1').text(product.name);
+    $('#product-content p.description').text(product.description);
+    $('#product-content span.price strong').text('$' + product.price);
+  }
+
+  function requestProduct(product_id) {
+    $.getJSON('/products/' + product_id + '.json', showProduct);
+  }
+
+  $products_list.on('tap', 'a', function(e) {
+    requestProduct($(this).data('product-id'));
+  });
+
 })(jQuery);
