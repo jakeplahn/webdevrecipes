@@ -15,6 +15,7 @@
             .attr('href', '#product')
             .text(product.name)
             .data('transition', 'slide')
+            .data('product-id', product.id)
         );
         $products_list.append($product_list_item);
       });
