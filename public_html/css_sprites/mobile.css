@@ -1,0 +1,12 @@
+ul.collapsible li.expanded:before {
+  background: url(images/expand_collapse_sprite.png) 0 -5px;
+  content: '';
+  height: 20px;
+  width: 30px;
+}
+ul.collapsible li.collapsed:before {
+  background: url(images/expand_collapse_sprite.png) 0 -30px;
+  content: '';
+  height: 25px;
+  width: 30px;
+}
