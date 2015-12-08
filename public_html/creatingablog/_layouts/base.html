@@ -2,9 +2,21 @@
 <html lang="en-US">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{ page.title }}</title>
     <link rel="stylesheet" href="lorem.css">
   </head>
   <body>
+    <div class="wrapper">
+      <header>
+        <h1>The Master Plan Blog</h1>
+      </header>
+      <section id="posts">
+        {{ content }}
+      </section>
+      <footer>
+        <small>Copyright AwesomeCo</small>
+      </footer>
+    </div>
   </body>
 </html>
